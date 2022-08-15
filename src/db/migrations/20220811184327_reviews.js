@@ -4,8 +4,14 @@ exports.up = function(knex) {
         table.increments("review_id").primary();
         table.string("content");
         table.integer("score");
-        table.increments("movie_id").primary();
-        table.increments("critic_id").primary();
+        table.foreign("movie_id")
+        .references("movie_id")
+        .inTable("movies")
+        .onDelete("cascade");
+        table.foreign("critic_id")
+    .references("critic_id")
+    .inTable("critics")
+    .onDelete("cascade");
         table.timestamps(true, true); // Adds created_at and updated_at columns
       });
 };

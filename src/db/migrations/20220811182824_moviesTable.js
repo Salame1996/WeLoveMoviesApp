@@ -3,9 +3,10 @@
 exports.up = function (knex) {
   return knex.schema.createTable("movies", (table) => {
     table.increments("movie_id").primary();
-    table.string("runtime_in_minutes");
+    table.integer("runtime_in_minutes");
     table.string("rating");
     table.string("description");
+    table.string("image_url");
     table.timestamps(true, true); // Adds created_at and updated_at columns 
   });
 };

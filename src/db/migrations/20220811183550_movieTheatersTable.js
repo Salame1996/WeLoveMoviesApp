@@ -1,11 +1,16 @@
 //make sure table.incremets is coorrecton both.
 
 exports.up = function (knex) {
-  return knex.schema.createTable("movies_theaterTable", (table) => {
-    table.increments("movie_id").primary();
-    table.increments("theater_id").primary();
+  return knex.schema.createTable("movies_theaters", (table) => {
+    table.foreign("movie_id")
+    .references("movie_id")
+    .inTable("movies")
+    .onDelete("cascade");
+    table.foreign("theater_id")
+    .references("theater_id")
+    .inTable("theater")
+    .onDelete("cascade");
     table.boolean("is_showing");
-    table.timestamps(true, true); // Adds created_at and updated_at columns
   });
 };
 
